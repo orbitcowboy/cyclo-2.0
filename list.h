@@ -45,8 +45,8 @@ public:
   ~_LIST_CLASSNAME();
   int Add(_LIST_CLASSTYPE *);
   inline void Remove(int member);
-  int Count() { return members; }
-  int Empty(void) { return !Count(); }
+  int Count() const { return members; }
+  int Empty(void) const { return !Count(); }
   _LIST_CLASSTYPE & operator[](int);
 };
 

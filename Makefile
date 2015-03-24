@@ -29,7 +29,7 @@ DEBUG = # -g
 OPTIM = -O
 LEXOPTS = -t
 LDFLAGS = $(DEBUG)
-CFLAGS = $(OPTIM) $(DEBUG) #-Wall
+CFLAGS = $(OPTIM) $(DEBUG) -Wall -Wextra -pedantic 
 LIBS = -ll
 
 all: mcstrip cyclo
