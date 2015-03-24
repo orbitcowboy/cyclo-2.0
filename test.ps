@@ -1,0 +1,635 @@
+%!PS
+%%Creator: cyclo - Control flow graph
+/node {
+dup
+xconst mul
+/x exch def			
+numnodes 1 add exch sub
+yconst mul
+/y exch def
+
+% centre string
+dup stringwidth pop
+2 div       
+x exch sub /xx exch def
+fontsize
+3 div                    % why 3 I wonder?
+y exch sub /yy exch def 
+xx yy moveto
+show
+
+%draw circle
+newpath  % remove line to start of circle
+currentlinewidth
+bubble setlinewidth
+x y radius 0 360 arc stroke
+setlinewidth
+} def
+
+/factor 2 sqrt def
+
+/top {  % nodeno -top- xcoord ycoord
+dup
+xconst mul /x exch def
+numnodes 1 add exch sub
+yconst mul /y exch def
+x radius factor div add y radius factor div add
+} def
+
+/bottom {  % nodeno -bottom- xcoord ycoord
+dup
+xconst mul /x exch def
+numnodes 1 add exch sub
+yconst mul /y exch def
+x radius factor div sub y radius factor div sub
+} def 
+
+/toploop { % nodeno -toploop- xcoord ycoord
+dup
+xconst mul /x exch def
+numnodes 1 add exch sub
+yconst mul /y exch def
+x y radius add
+} def
+
+/rightloop { % nodeno -rightloop- xcoord ycoord
+dup
+xconst mul /x exch def
+numnodes 1 add exch sub
+yconst mul /y exch def
+x radius add y
+} def
+
+/arcback {
+/second exch def
+/first exch def
+currentlinewidth
+newpath
+linewid setlinewidth
+first bottom moveto
+
+first bottom pop /xxx exch def
+second bottom exch pop /yyy exch def
+
+xxx 
+yyy dup first bottom exch pop sub abs fudge mul add
+xxx dup second bottom pop sub abs fudge mul add
+yyy
+
+second bottom
+curveto
+stroke
+
+% arrow head
+first bottom moveto
+first bottom pop 0.25 radius mul arrow mul add
+first bottom exch pop radius arrow mul sub
+lineto
+
+first bottom moveto
+first bottom pop 0.25 radius mul arrow mul sub
+first bottom exch pop radius arrow mul sub
+lineto
+
+stroke
+
+setlinewidth
+} def
+
+/arcloop {
+/n exch def
+currentlinewidth
+newpath
+linewid setlinewidth
+n toploop /ytop exch def /xtop exch def
+n rightloop /yright exch def /xright exch def
+
+xright yright moveto
+xright radius loopfactor mul add yright radius loopfactor mul 6 div add
+xtop ytop radius loopfactor mul add
+xtop ytop
+curveto
+stroke
+
+% arrow head
+xtop ytop moveto
+xtop 0.25 radius mul arrow mul add
+ytop radius arrow mul add
+lineto
+
+xtop ytop moveto
+xtop 0.25 radius mul arrow mul sub
+ytop radius arrow mul add
+lineto
+
+stroke
+setlinewidth
+} def 
+
+/arcfore {
+/second exch def
+/first exch def
+currentlinewidth
+newpath
+linewid setlinewidth
+first top moveto
+
+second top pop /xxx exch def
+first top exch pop /yyy exch def
+
+xxx dup first bottom pop sub abs fudge mul sub
+yyy
+xxx 
+yyy dup second bottom exch pop sub abs fudge mul sub
+
+
+second top
+curveto
+stroke
+
+% arrow head
+second top moveto
+second top pop radius arrow 0.25 mul mul sub
+second top exch pop radius arrow mul add
+lineto
+
+second top moveto
+second top pop radius arrow 0.25 mul mul add
+second top exch pop radius arrow mul add
+lineto
+
+stroke
+
+setlinewidth
+} def
+
+/xconst    10 def       % distance bubbles are apart (x)
+/yconst    10 def       % distance bubbles are apart (y)
+/radius     6 def       % radius of bubble
+/loopfactor 2 def       % multiply by radius for loopback distance
+/fontsize   6 def       % point size of text in bubbles
+/fudge     .4 def       % flatness of lines between bubbles
+/linewid  0.2 def       % width of lines between bubbles
+/bubble   0.6 def       % width of circle around bubbles 
+/arrow    0.6 def       % arrowhead length as proportion of bubble radius
+
+% Flow graph for function voidArincInitializeStateToDefault
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 2 def    % number of nodes
+(76) 1 node 
+1 2 arcfore
+(79) 2 node 
+
+showpage
+% Flow graph for function voidArincInitialize
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 2 def    % number of nodes
+(85) 1 node 
+1 2 arcfore
+(111) 2 node 
+
+showpage
+% Flow graph for function voidArincWriteLabel
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 2 def    % number of nodes
+(117) 1 node 
+1 2 arcfore
+(128) 2 node 
+
+showpage
+% Flow graph for function voidArincReadLabel
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 2 def    % number of nodes
+(134) 1 node 
+1 2 arcfore
+(146) 2 node 
+
+showpage
+% Flow graph for function bool_tArincIsDataAvailable
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 3 def    % number of nodes
+(156) 1 node 
+1 2 arcfore
+(171) 2 node 
+2 3 arcfore
+(172) 3 node 
+
+showpage
+% Flow graph for function bool_tArincDMELabelsValid
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 3 def    % number of nodes
+(182) 1 node 
+1 2 arcfore
+(192) 2 node 
+2 3 arcfore
+(193) 3 node 
+
+showpage
+% Flow graph for function bool_tArincIs0173_0174InTime
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 3 def    % number of nodes
+(206) 1 node 
+1 2 arcfore
+(210) 2 node 
+2 3 arcfore
+(211) 3 node 
+
+showpage
+% Flow graph for function bool_tArincAllLabelsInTime
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 3 def    % number of nodes
+(225) 1 node 
+1 2 arcfore
+(226) 2 node 
+2 3 arcfore
+(230) 3 node 
+
+showpage
+% Flow graph for function voidArincUpdateStateMachines
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 2 def    % number of nodes
+(236) 1 node 
+1 2 arcfore
+(250) 2 node 
+
+showpage
+% Flow graph for function voidArincGetStateMachineParameters
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 15 def    % number of nodes
+(260) 1 node 
+1 2 arcfore
+(261) 2 node 
+2 3 arcfore
+2 5 arcfore
+2 7 arcfore
+2 9 arcfore
+2 11 arcfore
+2 13 arcfore
+(263) 3 node 
+3 4 arcfore
+(266) 4 node 
+4 15 arcfore
+(267) 5 node 
+5 6 arcfore
+(270) 6 node 
+6 15 arcfore
+(271) 7 node 
+7 8 arcfore
+(274) 8 node 
+8 15 arcfore
+(275) 9 node 
+9 10 arcfore
+(278) 10 node 
+10 15 arcfore
+(279) 11 node 
+11 12 arcfore
+(282) 12 node 
+12 15 arcfore
+(283) 13 node 
+13 14 arcfore
+(286) 14 node 
+14 15 arcfore
+(288) 15 node 
+
+showpage
+% Flow graph for function voidArincUpdateStateMachine
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 48 def    % number of nodes
+(304) 1 node 
+1 2 arcfore
+(314) 2 node 
+2 3 arcfore
+2 48 arcfore
+(315) 3 node 
+3 4 arcfore
+(316) 4 node 
+4 5 arcfore
+4 11 arcfore
+4 26 arcfore
+4 32 arcfore
+4 47 arcfore
+(319) 5 node 
+5 6 arcfore
+(320) 6 node 
+6 7 arcfore
+6 9 arcfore
+(321) 7 node 
+7 8 arcfore
+(324) 8 node 
+8 10 arcfore
+(325) 9 node 
+9 10 arcfore
+(330) 10 node 
+10 47 arcfore
+(331) 11 node 
+11 12 arcfore
+(332) 12 node 
+12 13 arcfore
+12 19 arcfore
+(333) 13 node 
+13 14 arcfore
+(334) 14 node 
+14 15 arcfore
+14 17 arcfore
+(335) 15 node 
+15 16 arcfore
+(338) 16 node 
+16 18 arcfore
+(339) 17 node 
+17 18 arcfore
+(344) 18 node 
+18 25 arcfore
+(345) 19 node 
+19 20 arcfore
+(347) 20 node 
+20 21 arcfore
+20 23 arcfore
+(348) 21 node 
+21 22 arcfore
+(351) 22 node 
+22 24 arcfore
+(352) 23 node 
+23 24 arcfore
+(357) 24 node 
+24 25 arcfore
+(358) 25 node 
+25 47 arcfore
+(359) 26 node 
+26 27 arcfore
+(360) 27 node 
+27 28 arcfore
+27 30 arcfore
+(361) 28 node 
+28 29 arcfore
+(364) 29 node 
+29 31 arcfore
+(365) 30 node 
+30 31 arcfore
+(370) 31 node 
+31 47 arcfore
+(372) 32 node 
+32 33 arcfore
+(373) 33 node 
+33 34 arcfore
+33 40 arcfore
+(374) 34 node 
+34 35 arcfore
+(375) 35 node 
+35 36 arcfore
+35 38 arcfore
+(376) 36 node 
+36 37 arcfore
+(379) 37 node 
+37 39 arcfore
+(380) 38 node 
+38 39 arcfore
+(385) 39 node 
+39 46 arcfore
+(386) 40 node 
+40 41 arcfore
+(388) 41 node 
+41 42 arcfore
+41 44 arcfore
+(389) 42 node 
+42 43 arcfore
+(392) 43 node 
+43 45 arcfore
+(393) 44 node 
+44 45 arcfore
+(398) 45 node 
+45 46 arcfore
+(399) 46 node 
+46 47 arcfore
+(404) 47 node 
+47 48 arcfore
+(405) 48 node 
+
+showpage
+% Flow graph for function voidArincStoreLabelToBuffer
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 15 def    % number of nodes
+(413) 1 node 
+1 2 arcfore
+(414) 2 node 
+2 3 arcfore
+2 5 arcfore
+2 7 arcfore
+2 9 arcfore
+2 11 arcfore
+2 13 arcfore
+(416) 3 node 
+3 4 arcfore
+(419) 4 node 
+4 15 arcfore
+(420) 5 node 
+5 6 arcfore
+(423) 6 node 
+6 15 arcfore
+(424) 7 node 
+7 8 arcfore
+(427) 8 node 
+8 15 arcfore
+(428) 9 node 
+9 10 arcfore
+(430) 10 node 
+10 15 arcfore
+(431) 11 node 
+11 12 arcfore
+(433) 12 node 
+12 15 arcfore
+(434) 13 node 
+13 14 arcfore
+(436) 14 node 
+14 15 arcfore
+(438) 15 node 
+
+showpage
+% Flow graph for function bool_tArincIsParityCheckOk
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 3 def    % number of nodes
+(460) 1 node 
+1 2 arcfore
+(461) 2 node 
+2 3 arcfore
+(462) 3 node 
+
+showpage
+% Flow graph for function voidArincUpdateMEBuuffersOrSend
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 23 def    % number of nodes
+(470) 1 node 
+1 2 arcfore
+(471) 2 node 
+2 3 arcfore
+2 5 arcfore
+2 7 arcfore
+2 9 arcfore
+2 19 arcfore
+2 21 arcfore
+(473) 3 node 
+3 4 arcfore
+(477) 4 node 
+4 23 arcfore
+(479) 5 node 
+5 6 arcfore
+(483) 6 node 
+6 23 arcfore
+(485) 7 node 
+7 8 arcfore
+(489) 8 node 
+8 23 arcfore
+(491) 9 node 
+9 10 arcfore
+(494) 10 node 
+10 11 arcfore
+10 16 arcfore
+(495) 11 node 
+11 12 arcfore
+(496) 12 node 
+12 13 arcfore
+12 15 arcfore
+(497) 13 node 
+13 14 arcfore
+(509) 14 node 
+14 23 arcfore
+(511) 15 node 
+15 17 arcfore
+(512) 16 node 
+16 17 arcfore
+(517) 17 node 
+17 18 arcfore
+(518) 18 node 
+18 23 arcfore
+(521) 19 node 
+19 20 arcfore
+(525) 20 node 
+20 23 arcfore
+(527) 21 node 
+21 22 arcfore
+(530) 22 node 
+22 23 arcfore
+(533) 23 node 
+
+showpage
+% Flow graph for function voidArincProcessLabels
+/Helvetica-Narrow findfont fontsize scalefont setfont
+% move away from margins
+20 40 translate
+1 1 scale
+/numnodes 32 def    % number of nodes
+(539) 1 node 
+1 2 arcfore
+(540) 2 node 
+2 3 arcfore
+2 12 arcfore
+(541) 3 node 
+3 4 arcfore
+(548) 4 node 
+4 5 arcfore
+4 7 arcfore
+(549) 5 node 
+5 6 arcfore
+(551) 6 node 
+6 11 arcfore
+(552) 7 node 
+7 8 arcfore
+(556) 8 node 
+8 9 arcfore
+8 10 arcfore
+(557) 9 node 
+9 10 arcfore
+(563) 10 node 
+10 11 arcfore
+(564) 11 node 
+11 12 arcfore
+(566) 12 node 
+12 13 arcfore
+12 32 arcfore
+(567) 13 node 
+13 14 arcfore
+(573) 14 node 
+14 15 arcfore
+14 17 arcfore
+(574) 15 node 
+15 16 arcfore
+(580) 16 node 
+16 26 arcfore
+(581) 17 node 
+17 18 arcfore
+(591) 18 node 
+18 19 arcfore
+18 24 arcfore
+(592) 19 node 
+19 20 arcfore
+(594) 20 node 
+20 21 arcfore
+20 22 arcfore
+(595) 21 node 
+21 22 arcfore
+(599) 22 node 
+22 23 arcfore
+(600) 23 node 
+23 25 arcfore
+(601) 24 node 
+24 25 arcfore
+(607) 25 node 
+25 26 arcfore
+(611) 26 node 
+26 27 arcfore
+26 31 arcfore
+(612) 27 node 
+27 28 arcfore
+(615) 28 node 
+28 29 arcfore
+28 30 arcfore
+(616) 29 node 
+29 30 arcfore
+(619) 30 node 
+30 31 arcfore
+(622) 31 node 
+31 32 arcfore
+(626) 32 node 
+
+showpage
