@@ -35,15 +35,15 @@ struct Token
   enum TOKENS type;		/* token type (from tokens.h) */
   int lineno;			/* lineno the token appeared on */
   char *string;			/* optional information */
-    Token ()
-  {
-    string = 0;
-  }
+  Token (): type(UNDEFINED), 
+            lineno(0), 
+            string(0)
+  {}
+
   ~Token ()
   {
     if (string)
       free (string);
-    string = 0;
   }
 };
 

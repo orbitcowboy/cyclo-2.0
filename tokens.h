@@ -41,7 +41,8 @@ enum TOKENS
   RETURN,
   IGNORE,
   ELSE,
-	ELSEIF
+	ELSEIF,
+  UNDEFINED
 };
 
 extern union YY_LVAL
