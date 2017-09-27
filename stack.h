@@ -47,7 +47,7 @@ class _STACK_CLASSNAME : private _LIST_CLASSNAME
   // default constructor & destructors
 
 public:
-  int Size(void) { return Count(); }
+  int Size(void) const { return Count(); }
   int Push(_STACK_TYPE * item) { return Add(item); }
   _STACK_TYPE &Top(int which=0);
   void Pop(void);
